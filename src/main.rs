@@ -9,7 +9,7 @@ async fn main() {
         .route("/health", get(health_handler));
 
     // run it
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
     println!("listening on {}", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
@@ -18,9 +18,11 @@ async fn main() {
 }
 
 async fn hello_handler() -> Html<&'static str> {
+    println!("/ called");
     Html("<h1>Hello, World!</h1>")
 }
 
 async fn health_handler() -> &'static str {
+    println!("/health called");
     "Healthy"
 }
