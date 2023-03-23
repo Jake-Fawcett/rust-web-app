@@ -3,7 +3,6 @@ FROM rust:1.60 as build
 # Empty rust project is created, and dependencies copied into that project
 RUN USER=root cargo new --bin rust-web-app
 WORKDIR /rust-web-app
-COPY ./Cargo.lock ./Cargo.lock
 COPY ./Cargo.toml ./Cargo.toml
 
 # Release build is triggered, then src folder removed
