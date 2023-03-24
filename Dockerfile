@@ -6,7 +6,7 @@ WORKDIR /rust-web-app
 COPY ./Cargo.lock ./Cargo.lock
 COPY ./Cargo.toml ./Cargo.toml
 
-RUN apt-get install -y cmake
+RUN apt-get update && apt-get install -y cmake
 
 # Release build is triggered, then src folder removed
 # This means if src is changed, dependencies do not need to be rebuilt
