@@ -1,7 +1,9 @@
 use askama::Template;
 use axum::{
     response::{Html, IntoResponse, Response},
+    http::StatusCode,
     routing::get, 
+    extract,
     Router};
 use std::net::SocketAddr;
 
@@ -9,9 +11,9 @@ use std::net::SocketAddr;
 async fn main() {
     // build our application with a route
     let app = Router::new()
-        .route("/", get(hello_handler))
+        .route("/", get(main_handler))
         .route("/health", get(health_handler))
-        .route("/hello/:name", get(hello));
+        .route("/hello/:name", get(hello_handler));
 
     // run it
     let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
@@ -24,18 +26,18 @@ async fn main() {
 
 async fn main_handler() -> impl IntoResponse {
     println!("/ called");
-    let template = MainTemplate;
+    let template = MainTemplate {};
     HtmlTemplate(template)
 }
 
 async fn health_handler() -> impl IntoResponse {
     println!("/health called");
-    let template = HealthTemplate;
+    let template = HealthTemplate {};
     HtmlTemplate(template)
 }
 
 async fn hello_handler(extract::Path(name): extract::Path<String>) -> impl IntoResponse {
-    println_f!("/hello/{name} called");
+    println!("/hello/{} called", name);
     let template = HelloTemplate { name };
     HtmlTemplate(template)
 }
