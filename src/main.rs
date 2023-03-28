@@ -9,13 +9,13 @@ use std::net::SocketAddr;
 
 #[tokio::main]
 async fn main() {
-    // build our application with a route
+    // Build the application with a route
     let app = Router::new()
-        .route("/", get(main_handler))
+        .route("/", get(index_handler))
         .route("/health", get(health_handler))
         .route("/hello/:name", get(hello_handler));
 
-    // run it
+    // Run the application
     let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
     println!("listening on {}", addr);
     axum::Server::bind(&addr)
@@ -24,10 +24,10 @@ async fn main() {
         .unwrap();
 }
 
-async fn main_handler() -> impl IntoResponse {
+async fn index_handler() -> impl IntoResponse {
     println!("/ called");
-    let template = MainTemplate {};
-    HtmlTemplate(template)
+    let template = IndexTemplate {}; // Instantiate Struct
+    HtmlTemplate(template) // Render Struct
 }
 
 async fn health_handler() -> impl IntoResponse {
@@ -43,15 +43,13 @@ async fn hello_handler(extract::Path(name): extract::Path<String>) -> impl IntoR
 }
 
 
-#[derive(Template)]
-#[template(path = "main.html")]
-struct MainTemplate {
-}
+#[derive(Template)] // Askama generated the code..
+#[template(path = "index.html")] // using the template in the below path relative to templates
+struct IndexTemplate {}
 
 #[derive(Template)]
 #[template(path = "health.html")]
-struct HealthTemplate {
-}
+struct HealthTemplate {}
 
 #[derive(Template)]
 #[template(path = "hello.html")]
