@@ -25,18 +25,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Build and export to Docker
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: .
-      #     load: true
-      #     tags: ${{ env.TEST_TAG }}
-      # - name: Test
-      #   run: |
-      #     docker run --rm ${{ env.TEST_TAG }}
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ${{ env.LATEST_TAG }}
+      - name: Publish to Github Container registry
+        run: docker push ghcr.io/${{ env.LATEST_TAG }}
