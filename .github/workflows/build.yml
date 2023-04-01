@@ -17,6 +17,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the hello-docker Docker image
         run: |
-          docker build . --tag ghcr.io/Jake-Fawcett/rust-web-app:latest
-          docker run ghcr.io/Jake-Fawcett/rust-web-app:latest
-          docker push ghcr.io/Jake-Fawcett/rust-web-app:latest
+          docker build . --tag ghcr.io/jake-fawcett/rust-web-app:latest
+          docker run ghcr.io/jake-fawcett/rust-web-app:latest
+          docker push ghcr.io/jake-fawcett/rust-web-app:latest
