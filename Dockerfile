@@ -26,6 +26,6 @@ COPY --from=build /rust-web-app/target/release/rust-web-app .
 EXPOSE 8000
 
 # Label the container to link it to the Repo
-LABEL org.opencontainers.image.source="https://github.com/Jake-Fawcett/rust-web-app"
+LABEL org.opencontainers.image.source="https://github.com/jake-fawcett/rust-web-app"
 
 CMD ["./rust-web-app"]
