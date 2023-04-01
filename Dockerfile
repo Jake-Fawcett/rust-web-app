@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y cmake
 RUN cargo build --release
 RUN rm src/*.rs
 COPY ./src ./src
+COPY ./templates ./templates
 
 # Remove dependency binary and trigger another release build with everything
 RUN rm ./target/release/deps/rust_web_app*
