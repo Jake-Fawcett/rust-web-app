@@ -3,7 +3,11 @@ name = "rust-web-app"
 version = "0.1.0"
 edition = "2021"
 
+[profile.release]
+incremental = true
+
 [dependencies]
 askama = "0.11"
 axum = "0.4.8"
 tokio = { version = "1.17.0", features = ["full"] }
+
