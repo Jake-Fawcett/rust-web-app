@@ -17,7 +17,7 @@ COPY ./src ./src
 COPY ./templates ./templates
 
 # Remove dependency binary and trigger another release build with everything
-RUN rm ./target/release/deps/rust_web_app*
+RUN rm ./target/release/deps/rust_web_server*
 RUN cargo build --release
 
 FROM debian:buster-slim
