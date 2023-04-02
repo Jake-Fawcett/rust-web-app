@@ -7,7 +7,6 @@ COPY ./.cargo ./.cargo
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
 
-
 RUN apt-get update && apt-get install -y cmake
 
 # Release build is triggered, then src folder removed
@@ -16,6 +15,7 @@ RUN cargo build --release
 RUN rm src/*.rs
 COPY ./src ./src
 COPY ./templates ./templates
+COPY ./assets ./assets
 
 # Remove dependency binary and trigger another release build with everything
 RUN rm ./target/release/deps/rust_web_server*
