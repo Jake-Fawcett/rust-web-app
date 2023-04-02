@@ -15,7 +15,7 @@ env:
 jobs:
   dev-build:
     runs-on: ubuntu-latest
-    if: contains(github.ref, "feature") || contains(github.ref, "bugfix")
+    if: contains(github.ref, 'feature') || contains(github.ref, 'bugfix')
     permissions:
       packages: write
     steps:
