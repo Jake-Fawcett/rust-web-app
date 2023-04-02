@@ -3,6 +3,7 @@ FROM rust:1.60 as build
 # Empty rust project is created, and dependencies copied into that project
 RUN USER=root cargo new --bin rust-web-server
 WORKDIR /rust-web-server
+COPY ./.cargo ./.cargo
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
 
@@ -24,6 +25,8 @@ FROM debian:buster-slim
 COPY --from=build /rust-web-server/target/release/rust-web-server .
 
 EXPOSE 8000
+
+HEALTHCHECK CMD curl --fail http://localhost:8000/health || exit 1  
 
 # Label the container to link it to the Repo
 LABEL org.opencontainers.image.source="https://github.com/jake-fawcett/rust-web-server"
