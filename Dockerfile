@@ -15,7 +15,6 @@ RUN cargo build --release
 RUN rm src/*.rs
 COPY ./src ./src
 COPY ./templates ./templates
-COPY ./assets ./assets
 
 # Remove dependency binary and trigger another release build with everything
 RUN rm ./target/release/deps/rust_web_server*
@@ -23,6 +22,7 @@ RUN cargo build --release
 
 FROM debian:buster-slim
 COPY --from=build /rust-web-server/target/release/rust-web-server .
+COPY ./assets ./assets
 
 EXPOSE 8000
 
