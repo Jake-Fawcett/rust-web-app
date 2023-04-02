@@ -8,6 +8,9 @@ rust-version = "1.60.0"
 incremental = true
 
 [dependencies]
-askama = "=0.11"
+askama = ">=0.11"
 axum = ">=0.4.8"
+axum-extra = "0.7.2"
 tokio = { version = ">=1.17.0", features = ["full"] }
+tower = ">=0.4.12"
+tower-http =  { version = ">=0.4.0", features = ["full"] }

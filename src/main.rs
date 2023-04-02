@@ -1,19 +1,23 @@
 use askama::Template;
+use std::net::SocketAddr;
+use tower_http::services::ServeDir;
 use axum::{
     response::{Html, IntoResponse, Response},
     http::StatusCode,
     routing::get, 
     extract,
     Router};
-use std::net::SocketAddr;
 
 #[tokio::main]
 async fn main() {
     // Build the application with a route
     let app = Router::new()
         .route("/", get(index_handler))
+        .route("/about", get(about_handler))
         .route("/health", get(health_handler))
-        .route("/hello/:name", get(hello_handler));
+        .route("/hello/:name", get(hello_handler))
+        .route("/dvd", get(dvd_handler))
+        .nest_service("/assets", ServeDir::new("assets"));
 
     // Run the application
     let addr = SocketAddr::from(([0, 0, 0, 0], 8000));
@@ -30,6 +34,12 @@ async fn index_handler() -> impl IntoResponse {
     HtmlTemplate(template) // Render Struct
 }
 
+async fn about_handler() -> impl IntoResponse {
+    println!("/about called");
+    let template = AboutTemplate {}; // Instantiate Struct
+    HtmlTemplate(template) // Render Struct
+}
+
 async fn health_handler() -> impl IntoResponse {
     println!("/health called");
     let template = HealthTemplate {};
@@ -42,10 +52,19 @@ async fn hello_handler(extract::Path(name): extract::Path<String>) -> impl IntoR
     HtmlTemplate(template)
 }
 
+async fn dvd_handler() -> impl IntoResponse {
+    println!("/dvd called");
+    let template = DvdTemplate {};
+    HtmlTemplate(template)
+}
 
 #[derive(Template)] // Askama generated the code..
 #[template(path = "index.html")] // using the template in the below path relative to templates
 struct IndexTemplate {}
+
+#[derive(Template)]
+#[template(path = "about.html")]
+struct AboutTemplate {}
 
 #[derive(Template)]
 #[template(path = "health.html")]
@@ -56,6 +75,10 @@ struct HealthTemplate {}
 struct HelloTemplate {
     name: String,
 }
+
+#[derive(Template)]
+#[template(path = "dvd.html")]
+struct DvdTemplate {}
 
 struct HtmlTemplate<T>(T);
 
