@@ -9,7 +9,6 @@ on:
 
 env:
   TEST_TAG: jake-fawcett/rust-web-server:test
-  STAGING_TAG: jake-fawcett/rust-web-server:staging
   LATEST_TAG: jake-fawcett/rust-web-server:latest
 
 jobs:
@@ -39,20 +38,6 @@ jobs:
           platforms: linux/arm64/v8
           push: true
           tags: ghcr.io/${{ env.TEST_TAG }}
-
-      - name: Test running container
-        run: |
-          docker run -d ghcr.io/jake-fawcett/rust-web-server:test
-          container_id=$(sudo docker ps -q -n 1)
-          docker stop --time 10 $container_id
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          platforms: linux/arm64/v8
-          push: true
-          tags: ghcr.io/${{ env.STAGING_TAG }}
 
   prod-build:
     runs-on: ubuntu-latest
