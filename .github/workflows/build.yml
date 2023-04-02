@@ -15,7 +15,7 @@ env:
 jobs:
   dev-build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: contains(github.ref, "feature") || contains(github.ref, "bugfix")
     permissions:
       packages: write
     steps:
@@ -56,7 +56,7 @@ jobs:
 
   prod-build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/bugfix/*'
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
     steps:
