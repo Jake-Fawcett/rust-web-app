@@ -6,8 +6,8 @@ on:
       - "main"
 
 env:
-  TEST_TAG: jake-fawcett/rust-web-app:test
-  LATEST_TAG: jake-fawcett/rust-web-app:latest
+  TEST_TAG: jake-fawcett/rust-web-server:test
+  LATEST_TAG: jake-fawcett/rust-web-server:latest
 
 jobs:
   build:

@@ -455,7 +455,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-web-app"
+name = "rust-web-server"
 version = "0.1.0"
 dependencies = [
  "askama",

@@ -1,5 +1,5 @@
 [package]
-name = "rust-web-app"
+name = "rust-web-server"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.60.0"
