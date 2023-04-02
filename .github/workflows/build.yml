@@ -4,23 +4,23 @@ on:
   push:
     branches:
       - "main"
-      - "bugfix/platform-image-issue"
+      - "feature/*"
+      - "bugfix/*"
 
 env:
   TEST_TAG: jake-fawcett/rust-web-server:test
+  STAGING_TAG: jake-fawcett/rust-web-server:staging
   LATEST_TAG: jake-fawcett/rust-web-server:latest
 
 jobs:
-  build:
+  dev-build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -39,3 +39,44 @@ jobs:
           platforms: linux/arm64/v8
           push: true
           tags: ghcr.io/${{ env.TEST_TAG }}
+
+      - name: Test running container
+        run: |
+          docker run -d ghcr.io/jake-fawcett/rust-web-server:test
+          container_id=$(sudo docker ps -q -n 1)
+          docker stop --time 10 $container_id
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/arm64/v8
+          push: true
+          tags: ghcr.io/${{ env.STAGING_TAG }}
+
+  prod-build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/bugfix/*'
+    permissions:
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/arm64/v8
+          push: true
+          tags: ghcr.io/${{ env.LATEST_TAG }}
