@@ -3,6 +3,7 @@ FROM rust:1.60 as build
 # Empty rust project is created, and dependencies copied into that project
 RUN USER=root cargo new --bin rust-web-server
 WORKDIR /rust-web-server
+COPY ./.cargo ./.cargo
 COPY ./Cargo.toml ./Cargo.toml
 COPY ./Cargo.lock ./Cargo.lock
 
