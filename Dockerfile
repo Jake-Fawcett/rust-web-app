@@ -26,6 +26,7 @@ COPY ./assets ./assets
 
 EXPOSE 8000
 
+RUN apt-get install -y curl
 HEALTHCHECK CMD curl --fail http://localhost:8000/health || exit 1  
 
 # Label the container to link it to the Repo
