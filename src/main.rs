@@ -14,7 +14,6 @@ async fn main() {
     let app = Router::new()
         .route("/", get(index_handler))
         .route("/about", get(about_handler))
-        .route("/health", get(health_handler))
         .route("/hello/:name", get(hello_handler))
         .route("/dvd", get(dvd_handler))
         .nest_service("/assets", ServeDir::new("assets"));
@@ -40,12 +39,6 @@ async fn about_handler() -> impl IntoResponse {
     HtmlTemplate(template) // Render Struct
 }
 
-async fn health_handler() -> impl IntoResponse {
-    println!("/health called");
-    let template = HealthTemplate {};
-    HtmlTemplate(template)
-}
-
 async fn hello_handler(extract::Path(name): extract::Path<String>) -> impl IntoResponse {
     println!("/hello/{} called", name);
     let template = HelloTemplate { name };
@@ -65,10 +58,6 @@ struct IndexTemplate {}
 #[derive(Template)]
 #[template(path = "about.html")]
 struct AboutTemplate {}
-
-#[derive(Template)]
-#[template(path = "health.html")]
-struct HealthTemplate {}
 
 #[derive(Template)]
 #[template(path = "hello.html")]

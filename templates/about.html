@@ -2,38 +2,39 @@
 <html lang="en" class="sr">
 
 <style>
-html, body {height: 100%; margin: 10; padding: 10; font-family: arial;}
+@media screen and (max-width: 1000px) {
+    body {width: 95%; text-size-adjust: 150%}
+}
+@media screen and (min-width: 1000px) {
+    body {width: 60%; text-size-adjust: 100%}
+}
+body {margin: 0 auto; font-family: arial; }
+h3, h4 {margin-top: 0.5em; margin: 0;}
+p {margin-left: 1em; margin-right: 1em; margin-bottom: 0.5em}
 a {text-decoration:none; color: black;}
-ul {text-align: left !important; margin-left: 25%;}
-hr {align: center; width: 75%; margin-top: 60px; margin-bottom: 30px;}
-.highlight {color: #e79fc4}
-.about-div {width: 100%;}
-.projects-div {width: 100%; height: 40%}
-.experience-div {width: 100%; height: 25%}
-.qualifications-div {width: 100%; height: 30%}
-.projects-wrappers, .experience-wrappers, .qualifications-wrappers {width: 100%; height: 50%;}
-.projects-element, .experience-element, .qualifications-element {float: left; width: 30%; padding-left: 1%; text-align: center;} 
+hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
+.highlight {color: #e79fc4;}
+.projects-element, .experience-element, .qualifications-element {float: left; text-align: center; width: 50%; margin-bottom: 1%;} 
 </style>
 
 <head>
     <title> Jake Fawcett | About </title>
-    
 </head>
 
 <body>
     <div class="about-div">
-        <h1 class="highlight">Me</h1>
-        <p><b> I'm an Azure Platform Engineer currently working on a Data Platform while working at BJSS. </b></p>
-        <p><b></b> I have a background in Computer Science and Software development (Python, Javascript) but have more recently been pursuing my interest in the Cloud, DevOps, Networking and Security! </b></p>
+        <h1 class="highlight">Jake Fawcett</h1>
+        <p><b> I'm a Platform Engineer with experience in Azure, currently working on an Azure Data Platform while working at BJSS! </b></p>
+        <p> I have a passion for problem solving, and am always looking to learn. I'm currently pursuing my interest in the Cloud, DevOps, Networking and Security and have a background in Software Development and Computer Science. </p>
     </div>
     <hr />
 
     <div class="projects-div">
-        <h1 class="highlight">Projects</h1>
+        <h2 class="highlight">Projects</h2>
 
         <div class='projects-wrappers'>
             <div class='projects-element'>
-                <h3 class="highlight">Rust Web Server (this site!)</h3>
+                <h4 class="highlight">Rust Web Server (this site!)</h4>
                 <p>Simple dockerized Rust Axum web server, pushed to Github Container Registry with Github actions.</p>
                 <a href="https://github.com/jake-fawcett/rust-web-sever">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -51,7 +52,7 @@ hr {align: center; width: 75%; margin-top: 60px; margin-bottom: 30px;}
                 </a>
             </div>
             <div class='projects-element'>
-                <h3 class="highlight">Platform Tetris</h3>
+                <h4 class="highlight">Platform Tetris</h4>
                 <p>Tetris leaderboard Azure Web app developed using Python and Bicep and deployed via Azure Pipelines.</p>
                 <a href="https://github.com/jake-fawcett/Platform-Tetris">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
@@ -68,14 +69,17 @@ hr {align: center; width: 75%; margin-top: 60px; margin-bottom: 30px;}
                     tetris.jakef.dev
                 </a>
             </div>
+        </div>
+        
+        <div class='projects-wrappers'>
             <div class='projects-element'>
-                <h3 class="highlight">Advent of Code</h3>
-                <p>Advent of Code projects.</p>
+                <h4 class="highlight">Advent of Code</h4>
+                <p></p>
                 <a href="https://github.com/jake-fawcett/advent-of-code-2022">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                     </svg>
-                    Github - 2022 - Golang (deployed to Azure Web app via Terraform)
+                    Github - 2022 - Golang <br /> (deployed to Webapp via Terraform)
                 </a>
                 <br />
                 <a href="https://github.com/jake-fawcett/advent-of-code-2021">
@@ -85,33 +89,10 @@ hr {align: center; width: 75%; margin-top: 60px; margin-bottom: 30px;}
                     Github - 2021 - Python
                 </a>
             </div>
-        </div>
-        
-        <div class='projects-wrappers'>
             <div class='projects-element'>
-                <h3 class="highlight">Neural Networks (CNN and RNN) for DDoS Detection</h3>
-                <p>Jupyter Notebooks and Report for Disseration of detecting DDoS attacks using Neural Networks.</p>
+                <h4 class="highlight">Neural Networks for DDoS Detection</h4>
+                <p>Project around detecting DDoS attacks using Neural Networks.</p>
                 <a href="https://github.com/jake-fawcett/NN-for-DDoS">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    Github
-                </a>
-            </div>
-            <div class='projects-element'>
-                <h3 class="highlight">Pre-commit Hooks</h3>
-                <p>Pre-commit Hooks for Azure Projects.</p>
-                <a href="https://github.com/jake-fawcett/azure-pre-commit-hooks">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    Github
-                </a>
-            </div>
-            <div class='projects-element'>
-                <h3 class="highlight">Azure Bicep Modules</h3>
-                <p>Bicep Modules for Azure Projects, designed to be referenced using git submodules. To be expanded.</p>
-                <a href="https://github.com/jake-fawcett/bicep-modules">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                     </svg>
@@ -123,70 +104,45 @@ hr {align: center; width: 75%; margin-top: 60px; margin-bottom: 30px;}
     <hr />
 
     <div class="experience-div">
-        <h1 class="highlight">Experience</h1>
+        <h2 class="highlight">Experience</h2>
 
         <div class='experience-wrappers'>
             <div class='experience-element'>
-                <h3> BJSS - <span class="highlight">Azure Platform Engineer</span> </h3>
-                <ul>
-                    <li>Microsoft IaC (ARM, Bicep)</li>
-                    <li>Azure DevOps + Pipelines</li>
-                    <li>Python and Bash Scripting</li>
-                </ul>
+                <h4> BJSS - <span class="highlight">Platform Engineer</span> </h4>
+                <p>Azure Platform Engineer working on a Data Platform using; Azure Tooling (ARM, Bicep, DevOps, Pipelines), Python and Bash.</p>
             </div>
             <div class='experience-element'>
-                <h3> Versed AI - <span class="highlight">Software Engineer</span></h3>
-                <ul>
-                    <li>Python Development</li>
-                    <li>Data Engineering</li>
-                    <li>Data Annotation</li>
-                    <li>Scraping and Automation</li>
-                    <li>UI Design</li>
-                </ul>
-            </div>
-            <div class='experience-element'>
-                <h3> Amadeus - <span class="highlight">Software Engineer Intern</span></h3>
-                <ul>
-                    <li>Python Development</li>
-                    <li>Angular (Javascript) Development</li>
-                    <li>UI Design</li>
-                </ul>
+                <h4>Versed AI - <span class="highlight">Software Engineer</span></h4>
+                <p>Software Developer developing applications for Data ETL (Extract, Transform, Load).</p>
             </div>
         </div>
     </div>
     <hr />
 
     <div class="qualifications-div">
-        <h1 class="highlight">Qualifications and Certifications</h1>
+        <h2 class="highlight">Qualifications and Certifications</h2>
 
         <div class='qualifications-wrappers'>
             <div class='qualifications-element'>
-                <img src="assets/york.jpg" alt="UoY" width="150" height="150">
-                <p>University of York - 1st Class BEng in Computer Science</p>
-                <p></p>
-            </div>
-            <div class='qualifications-element'>
-                <img src="assets/azure-administrator-associate.png" alt="Azure Administrator" width="150" height="150">
+                <img src="/assets/azure-administrator-associate.png" alt="Azure Administrator" width="25%">
                 <p>Azure Administrator Associate</p>
             </div>
             <div class='qualifications-element'>
-                <img src="assets/aws-cloud-practitioner.png" alt="AWS Practitioner" width="150" height="150">
+                <img src="/assets/aws-cloud-practitioner.png" alt="AWS Practitioner" width="25%">
                 <p>AWS Certified Cloud Practitioner</p>
             </div>
         </div>
         
         <div class='qualifications-wrappers'>
+            
             <div class='qualifications-element'>
-                <img src="assets/azure-security-compliance-and-identity-fundamentals.png" alt="Azure Security" width="150" height="150">
+                <img src="/assets/york.jpg" alt="UoY" width="25%">
+                <p>University of York - 1st in Computer Science</p>
+                <p></p>
+            </div>
+            <div class='qualifications-element'>
+                <img src="/assets/azure-security-compliance-and-identity-fundamentals.png" alt="Azure Security" width="25%">
                 <p>Security, Compliance, and Identity Fundamentals</p>
-            </div>
-            <div class='qualifications-element'>
-                <img src="assets/azure-data-fundamentals.png" alt="Azure Data" width="150" height="150">
-                <p>Azure Data Fundamentals</p>
-            </div>
-            <div class='qualifications-element'>
-                <img src="assets/azure-ai-fundamentals.png" alt="Azure AI" width="150" height="150">
-                <p>Azure AI Fundamentals</p>
             </div>
         </div>
     </div>
