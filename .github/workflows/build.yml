@@ -10,6 +10,7 @@ on:
 env:
   TEST_TAG: jake-fawcett/rust-web-server:test
   LATEST_TAG: jake-fawcett/rust-web-server:latest
+  PLATFORMS: linux/arm64, linux/arm64, linux/arm64/v8, linux/amd64
 
 jobs:
   dev-build:
@@ -35,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: linux/arm64/v8
+          platforms: ${{ env.PLATFORMS }}
           push: true
           tags: ghcr.io/${{ env.TEST_TAG }}
 
@@ -62,6 +63,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: linux/arm64, linux/arm64, linux/arm64/v8, linux/amd64
+          platforms: ${{ env.PLATFORMS }}
           push: true
           tags: ghcr.io/${{ env.LATEST_TAG }}
