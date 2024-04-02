@@ -63,6 +63,7 @@ resource "azurerm_container_group" "container" {
   resource_group_name = azurerm_resource_group.rg.name
   ip_address_type     = "Public"
   os_type             = "Linux"
+  dns_name_label      = "rust-web-app-instance"
 
   depends_on = [
     null_resource.docker_push
