@@ -14,7 +14,8 @@ p {margin-left: 1em; margin-right: 1em; margin-bottom: 0.5em}
 a {text-decoration:none; color: black;}
 hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
 .highlight {color: #e79fc4;}
-.projects-element, .experience-element, .qualifications-element {float: left; text-align: center; width: 50%; margin-bottom: 1%;} 
+.projects-wrappers, .experience-wrappers, .qualifications-wrappers {display: flex} 
+.projects-element, .experience-element, .qualifications-element {text-align: center; width: 50%; margin-bottom: 1%; flex: 1;} 
 </style>
 
 <head>
@@ -25,7 +26,7 @@ hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
 <body>
     <div class="about-div">
         <h1 class="highlight">Jake Fawcett</h1>
-        <p><b> I'm a Platform Engineer with experience in Azure, currently working on an Azure Data Platform while working at BJSS! </b></p>
+        <p><b> I'm a Platform Engineer experience in Azure, currently working on an Azure Data Platform while working at BJSS! </b></p>
         <p> I have a passion for problem solving, and am always looking to learn. I'm currently pursuing my interest in the Cloud, DevOps, Networking and Security and have a background in Software Development and Computer Science. </p>
     </div>
     <hr />
@@ -53,9 +54,9 @@ hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
                 </a>
             </div>
             <div class='projects-element'>
-                <h4 class="highlight">Platform Tetris</h4>
+                <h4 class="highlight">Tetr.io Leaderboard</h4>
                 <p>Tetris leaderboard Azure Web app developed using Python and Bicep and deployed via Azure Pipelines.</p>
-                <a href="https://github.com/jake-fawcett/Platform-Tetris">
+                <a href="https://github.com/jake-fawcett/tetr.io-leaderboard">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                     </svg>
@@ -71,11 +72,40 @@ hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
                 </a>
             </div>
         </div>
-        
+
+        <div class='projects-wrappers'>
+            <div class='projects-element'>
+                <h4 class="highlight">Football Manager Squad and Recruitment evaluation</h4>
+            <p>Python script to evaluate Player attributes in Football Manager against roles based on role weightings.</p>
+                <a href="https://github.com/jake-fawcett/football-manager-squad-and-recruitment">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Github
+                </a>
+            </div>
+            <div class='projects-element'>
+                <h4 class="highlight">CV</h4>
+                <p>CV written in Latex which is versioned and released using Github Actions.</p>
+                <a href="https://github.com/jake-fawcett/CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Github
+                </a>
+            </div>
+        </div>
+
         <div class='projects-wrappers'>
             <div class='projects-element'>
                 <h4 class="highlight">Advent of Code</h4>
                 <p></p>
+                <a href="https://github.com/jake-fawcett/advent-of-code-2023">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Github - 2023 - Powershell <br />
+                </a>
                 <a href="https://github.com/jake-fawcett/advent-of-code-2022">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
@@ -110,11 +140,21 @@ hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
         <div class='experience-wrappers'>
             <div class='experience-element'>
                 <h4> BJSS - <span class="highlight">Platform Engineer</span> </h4>
-                <p>Azure Platform Engineer working on a Data Platform using; Azure Tooling (ARM, Bicep, DevOps, Pipelines), Python and Bash.</p>
+                <p> 2021 - Current </p>
+                <p>Azure Platform Engineer working on a Data Platform using; Azure Tooling (ARM, Bicep, DevOps, Pipelines), Databricks, Python and Bash.</p>
             </div>
             <div class='experience-element'>
                 <h4>Versed AI - <span class="highlight">Software Engineer</span></h4>
+                <p> 2020 - 2021 </p>
                 <p>Software Developer developing applications for Data ETL (Extract, Transform, Load).</p>
+                <p></p>
+            </div>
+        </div>
+        <div class='experience-wrappers'>
+            <div class='experience-element'>
+                <h4> Amadeus IT Services - <span class="highlight">Software Engineer Intern</span> </h4>
+                <p> 2019 - 2020 </p>
+                <p>Development of Proof of Value application for Airport Agents with a Python ReST API, Angular and MongoDB.</p>
             </div>
         </div>
     </div>
@@ -125,25 +165,36 @@ hr {margin-top: 1em; margin-bottom: 0.5em; width: 80%}
 
         <div class='qualifications-wrappers'>
             <div class='qualifications-element'>
+                <img src="/assets/azure-solution-architect.jpeg" alt="Azure Solutions Architect" width="25%">
+                <p>Azure Solutions Architect</p>
+            </div>
+            <div class='qualifications-element'>
                 <img src="/assets/azure-devops-engineer-expert.png" alt="Azure DevOps Engineer Expert" width="25%">
                 <p>Azure DevOps Engineer Expert</p>
             </div>
-            <div class='qualifications-element'>
-                <img src="/assets/aws-cloud-practitioner.png" alt="AWS Practitioner" width="25%">
-                <p>AWS Certified Cloud Practitioner</p>
-            </div>
         </div>
-        
+
         <div class='qualifications-wrappers'>
-            
+            <div class='qualifications-element'>
+                <img src="/assets/terraform-associate.png" alt="Terraform Associate" width="25%">
+                <p>Terraform Associate</p>
+            </div>
             <div class='qualifications-element'>
                 <img src="/assets/york.jpg" alt="UoY" width="25%">
                 <p>University of York - 1st in Computer Science</p>
                 <p></p>
             </div>
+            
+        </div>
+        
+        <div class='qualifications-wrappers'>
             <div class='qualifications-element'>
-                <img src="/assets/azure-administrator-associate.png" alt="Azure Administrator" width="25%">
-                <p>Azure Administrator Associate</p>
+                <img src="/assets/aws-cloud-practitioner.png" alt="AWS Practitioner" width="25%">
+                <p>AWS Certified Cloud Practitioner</p>
+            </div>
+            <div class='qualifications-element'>
+                <img src="/assets/databricks-platform-administrator.png" alt="Databricks Platform Administrator" width="20%">
+                <p>Databricks Platform Administrator</p>
             </div>
         </div>
     </div>
