@@ -33,10 +33,13 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "null_resource" "docker_push" {
+  triggers = {
+    always_run = timestamp()
+  }
   provisioner "local-exec" {
     command = <<-EOT
-      docker build /workspaces/rust-web-sever -t ${azurerm_container_registry.acr.login_server}/${var.image_name}
-      docker login ${azurerm_container_registry.acr.login_server} -u ${azurerm_container_registry.acr.admin_username} -p ${azurerm_container_registry.acr.admin_password}
+      docker build ../. -t ${azurerm_container_registry.acr.login_server}/${var.image_name}
+      docker login ${azurerm_container_registry.acr.login_server} -u ${azurerm_container_registry.acr.admin_username} --password-stdin ${azurerm_container_registry.acr.admin_password}
       docker push ${azurerm_container_registry.acr.login_server}/${var.image_name}
     EOT
   }
