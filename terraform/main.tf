@@ -38,11 +38,14 @@ resource "null_resource" "docker_push" {
   }
   provisioner "local-exec" {
     command = <<-EOT
-      docker build ../. -t ${azurerm_container_registry.acr.login_server}/${var.image_name}
-      docker login ${azurerm_container_registry.acr.login_server} -u ${azurerm_container_registry.acr.admin_username} --password-stdin ${azurerm_container_registry.acr.admin_password}
-      docker push ${azurerm_container_registry.acr.login_server}/${var.image_name}
+      sudo docker build ../. -t ${azurerm_container_registry.acr.login_server}/${var.image_name}
+      sudo docker login ${azurerm_container_registry.acr.login_server} -u ${azurerm_container_registry.acr.admin_username} -p ${azurerm_container_registry.acr.admin_password}
+      sudo docker push ${azurerm_container_registry.acr.login_server}/${var.image_name}
     EOT
   }
+  depends_on = [ 
+    azurerm_container_registry.acr
+  ]
 }
 
 resource "azurerm_storage_account" "aci_caddy" {
@@ -54,10 +57,34 @@ resource "azurerm_storage_account" "aci_caddy" {
   enable_https_traffic_only = true
 }
 
-resource "azurerm_storage_share" "aci_caddy" {
+resource "azurerm_storage_share" "aci_caddy_data" {
   name                 = "aci-caddy-data"
   storage_account_name = azurerm_storage_account.aci_caddy.name
   quota                = 5
+}
+
+resource "azurerm_storage_share" "aci_caddy_config" {
+  name                 = "aci-caddy-config"
+  storage_account_name = azurerm_storage_account.aci_caddy.name
+  quota                = 5
+  depends_on = [ 
+    azurerm_storage_share.aci_caddy_data 
+  ]
+}
+
+resource "azurerm_storage_share" "aci_caddy_file" {
+  name                 = "aci-caddy-file"
+  storage_account_name = azurerm_storage_account.aci_caddy.name
+  quota                = 5
+  depends_on = [ 
+    azurerm_storage_share.aci_caddy_config 
+  ]
+}
+
+resource "azurerm_storage_share_file" "aci_caddy_file" {
+  name             = "Caddyfile"
+  storage_share_id = azurerm_storage_share.aci_caddy_file.id
+  source           = "../caddy/Caddyfile"
 }
 
 resource "azurerm_container_group" "container" {
@@ -69,14 +96,17 @@ resource "azurerm_container_group" "container" {
   dns_name_label      = "rust-web-app-instance"
 
   depends_on = [
-    null_resource.docker_push
+    null_resource.docker_push,
+    azurerm_storage_share.aci_caddy_data,
+    azurerm_storage_share.aci_caddy_config,
+    azurerm_storage_share_file.aci_caddy_file
   ]
 
   container {
     name   = var.image_name
     image  = "${azurerm_container_registry.acr.login_server}/${var.image_name}"
-    cpu    = 1
-    memory = 1
+    cpu    = 0.5
+    memory = 0.5
 
     ports {
       port     = 8000
@@ -87,8 +117,8 @@ resource "azurerm_container_group" "container" {
   container {
     name   = "caddy"
     image  = "caddy:latest"
-    cpu    = 1
-    memory = 1
+    cpu    = 0.5
+    memory = 0.2
 
     ports {
       port     = 443
@@ -101,14 +131,31 @@ resource "azurerm_container_group" "container" {
     }
 
     volume {
-      name                 = "aci-caddy-data"
+      name                 = "data"
       mount_path           = "/data"
       storage_account_name = azurerm_storage_account.aci_caddy.name
       storage_account_key  = azurerm_storage_account.aci_caddy.primary_access_key
-      share_name           = azurerm_storage_share.aci_caddy.name
+      share_name           = azurerm_storage_share.aci_caddy_data.name
     }
 
-    commands = ["caddy", "reverse-proxy", "--from", "jakef.dev", "--to", "localhost:8000"]
+    volume {
+      name                 = "config"
+      mount_path           = "/config"
+      storage_account_name = azurerm_storage_account.aci_caddy.name
+      storage_account_key  = azurerm_storage_account.aci_caddy.primary_access_key
+      share_name           = azurerm_storage_share.aci_caddy_file.name
+    }
+
+    volume {
+      name                 = "caddy"
+      mount_path           = "/etc/caddy"
+      read_only            = true
+      storage_account_name = azurerm_storage_account.aci_caddy.name
+      storage_account_key  = azurerm_storage_account.aci_caddy.primary_access_key
+      share_name           = azurerm_storage_share.aci_caddy_file.name
+    }
+
+    commands = ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
   }
 
   image_registry_credential {
